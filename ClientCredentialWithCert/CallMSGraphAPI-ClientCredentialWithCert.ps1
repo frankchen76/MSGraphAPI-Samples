@@ -1,16 +1,16 @@
 # OAuth 2.0 Client Credential Auth flow Application permission 
-$tenantId = "8a5ee357-7de0-4836-ab20-9173b12cdce9";
-$clientId = "e2b23b83-4856-4029-9284-54b08a285564"
+$tenantId = "[tenant-id]";
+$clientId = "[client id]"
+$certPath = "[.pfx path]"
+
 $clientAssertionType = "urn:ietf:params:oauth:client-assertion-type:jwt-bearer"
-$graphAPI = "graph.microsoft.com"
 $grantType = "client_credentials"
-$scope = [System.String]::Format("https://{0}/.default", $graphAPI)
+$scope = "https://graph.microsoft.com/.default"
 $tokenUrl = [System.String]::Format("https://login.microsoftonline.com/{0}/oauth2/v2.0/token", $tenantId)
 
 ## generate JWT Assertion
 $scriptFullPath = $MyInvocation.MyCommand.Path
 $scriptPath = Split-Path $scriptFullPath
-$certPath = "D:\AzureDevOps\PFEProjects-Private\PS-Samples\SPO\Authentication\SPOFullTrustCert\SPOFullTrust.pfx"
 
 Add-Type -Path $([System.String]::Format("{0}\DLL\Microsoft.IdentityModel.Tokens.dll", $scriptPath ))
 Add-Type -Path $([System.String]::Format("{0}\DLL\Microsoft.IdentityModel.JsonWebTokens.dll", $scriptPath ))
